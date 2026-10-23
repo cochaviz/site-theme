@@ -7,7 +7,8 @@ function useTypeTransition(
   typeSpeed = 80,
   cyclePause = 10000,
 ) {
-  const [text, setText] = useState(a);
+  // `showingA`: whether `text` is (a prefix of) `a` rather than `b`
+  const [state, setState] = useState({ text: a, showingA: true });
   const forward = useRef(true); // true = a→b, false = b→a
 
   useEffect(() => {
@@ -16,18 +17,19 @@ function useTypeTransition(
     const runCycle = () => {
       const from = forward.current ? a : b;
       const to = forward.current ? b : a;
+      const showingA = forward.current;
 
       let i = from.length;
       const del = () => {
         i--;
-        setText(from.slice(0, i));
+        setState({ text: from.slice(0, i), showingA });
         if (i > 0) {
           timeout = setTimeout(del, typeSpeed * 0.6);
         } else {
           let j = 0;
           const type = () => {
             j++;
-            setText(to.slice(0, j));
+            setState({ text: to.slice(0, j), showingA: !showingA });
             if (j < to.length) {
               timeout = setTimeout(type, typeSpeed);
             } else {
@@ -45,7 +47,7 @@ function useTypeTransition(
     return () => clearTimeout(timeout);
   }, [a, b, delay, typeSpeed, cyclePause]);
 
-  return text;
+  return state;
 }
 
 interface TypedTitleProps {
@@ -53,13 +55,17 @@ interface TypedTitleProps {
   to: string;
 }
 
-/** Hero heading that periodically retypes itself between `from` and `to`, with a blinking cursor. */
+/**
+ * Hero heading that periodically retypes itself between `from` (the site name, set in
+ * mono) and `to` (set in sans), with a blinking cursor.
+ */
 export function TypedTitle({ from, to }: TypedTitleProps) {
-  const text = useTypeTransition(from, to);
+  const { text, showingA } = useTypeTransition(from, to);
 
   return (
     <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6">
-      {text}
+      {/* inline-block: the mono font's taller line box mustn't change the heading's height */}
+      <span className={`inline-block align-top ${showingA ? "font-mono font-medium tracking-normal" : ""}`}>{text}</span>
       <span className="inline-block w-[0.45em] h-[0.9em] bg-primary/50 ml-0.5 translate-y-[0.1em] animate-[pulse_1.5s_steps(1)_infinite]" />
     </h1>
   );
