@@ -31,8 +31,8 @@
     --radius: 0px;
 
     /* Custom tokens */
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-sans: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
+    --font-sans: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
 
     --text-dim: 260 10% 45%;
     --text-bright: 260 20% 15%;
@@ -45,6 +45,8 @@
     /* Code block colors */
     --code-bg: 260 10% 92%;
     --code-border: 260 10% 85%;
+    /* Muted text on --code-bg (line numbers, labels); >= 4.5:1 contrast */
+    --code-muted: 260 10% 44%;
   }
 
   .dark {
@@ -57,16 +59,17 @@
     --popover: 260 20% 9%;
     --popover-foreground: 260 10% 85%;
 
-    --primary: 270 60% 60%;
+    /* Text colours here meet WCAG AA (>= 4.5:1) on --background, --card and --code-bg */
+    --primary: 270 60% 63%;
     --primary-foreground: 260 20% 6%;
 
     --secondary: 260 20% 12%;
     --secondary-foreground: 260 10% 75%;
 
     --muted: 260 15% 14%;
-    --muted-foreground: 260 10% 45%;
+    --muted-foreground: 260 10% 54%;
 
-    --accent: 270 60% 60%;
+    --accent: 270 60% 63%;
     --accent-foreground: 260 20% 6%;
 
     --destructive: 0 84.2% 60.2%;
@@ -74,12 +77,12 @@
 
     --border: 260 20% 15%;
     --input: 260 20% 15%;
-    --ring: 270 60% 60%;
+    --ring: 270 60% 63%;
 
-    --text-dim: 260 10% 45%;
+    --text-dim: 260 10% 54%;
     --text-bright: 260 10% 85%;
 
-    --link-color: 270 60% 60%;
+    --link-color: 270 60% 63%;
     --link-hover: 270 70% 70%;
 
     --section-line: 260 20% 15%;
@@ -87,5 +90,6 @@
     /* Code block colors */
     --code-bg: 260 20% 10%;
     --code-border: 260 20% 18%;
+    --code-muted: 260 10% 54%;
   }
 }

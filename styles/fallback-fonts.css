@@ -1,0 +1,25 @@
+/*
+ * Metric-matched fallbacks: local fonts scaled to Space Grotesk / JetBrains Mono, so
+ * text doesn't shift when the web fonts swap in. Measured against Arial and Courier
+ * New (Liberation Sans/Mono are metric-compatible); Helvetica/Menlo are close enough.
+ *
+ * ssg-options.ts also inlines this file into every prerendered page, because the
+ * critical-CSS step drops @font-face rules without a url() source.
+ */
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 108.25%;
+  ascent-override: 90.9%;
+  descent-override: 26.97%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('Menlo');
+  size-adjust: 100%;
+  ascent-override: 102.02%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}

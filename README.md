@@ -7,17 +7,20 @@ submodule at `./theme`.
 ## Contents
 
 - `tailwind.preset.ts` – Tailwind preset (container, fonts, color map, radius, animations)
-- `styles/index.css` – fonts, design tokens (`tokens.css`), base styles (`base.css`) and
+- `styles/index.css` – self-hosted fonts (`fonts.css`, files in `fonts/`) with metric-matched
+  fallbacks (`fallback-fonts.css`), design tokens (`tokens.css`), base styles (`base.css`) and
   shared component classes (`components.css`, e.g. `.section-heading`, `.btn-outline-primary`)
+- `ssg-options.ts` – shared vite-react-ssg options (deferred script, critical CSS, workarounds)
 - `components/`
   - `PageColumn` – page shell with the centered content column (the column width lives here)
   - `TopBar` – fixed top-right button bar that hides on scroll on mobile
   - `TypedTitle` – hero heading that retypes between two strings
-  - `ThemeToggle` (requires a `next-themes` `ThemeProvider`) and `NavLink`
+  - `ThemeProvider` (next-themes, with the shared settings) and `ThemeToggle`, which needs it
+  - `NavLink`
 - `lib/utils.ts` – `cn()`
 
 No `package.json`: imports (`react`, `next-themes`, `clsx`, `tailwind-merge`,
-`tailwindcss-animate`, …) resolve from the consuming site's `node_modules`.
+`tailwindcss-animate`, `vite-react-ssg`, …) resolve from the consuming site's `node_modules`.
 
 ## Consuming
 
@@ -30,6 +33,12 @@ export default { presets: [preset], darkMode: ["class"], content: ["./src/**/*.{
 ```css
 /* src/index.css – must be the first line */
 @import "../theme/styles/index.css";
+```
+
+```ts
+// vite.config.ts
+import { ssgOptions } from "./theme/ssg-options";
+export default defineConfig({ /* ... */ ssgOptions });
 ```
 
 Add the `@theme/*` → `./theme/*` alias to `tsconfig.app.json` (`paths`, and `"theme"` in
