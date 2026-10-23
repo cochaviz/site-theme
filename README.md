@@ -8,8 +8,12 @@ submodule at `./theme`.
 
 - `tailwind.preset.ts` – Tailwind preset (container, fonts, color map, radius, animations)
 - `styles/index.css` – fonts, design tokens (`tokens.css`), base styles (`base.css`) and
-  shared component classes (`components.css`, e.g. `.section-heading`, `.link-accent`)
-- `components/` – `ThemeToggle` (requires a `next-themes` `ThemeProvider`) and `NavLink`
+  shared component classes (`components.css`, e.g. `.section-heading`, `.btn-outline-primary`)
+- `components/`
+  - `PageColumn` – page shell with the centered content column (the column width lives here)
+  - `TopBar` – fixed top-right button bar that hides on scroll on mobile
+  - `TypedTitle` – hero heading that retypes between two strings
+  - `ThemeToggle` (requires a `next-themes` `ThemeProvider`) and `NavLink`
 - `lib/utils.ts` – `cn()`
 
 No `package.json`: imports (`react`, `next-themes`, `clsx`, `tailwind-merge`,
