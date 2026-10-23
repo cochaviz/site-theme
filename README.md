@@ -20,7 +20,7 @@ No `package.json`: imports (`react`, `next-themes`, `clsx`, `tailwind-merge`,
 ```ts
 // tailwind.config.ts
 import preset from "./theme/tailwind.preset";
-export default { presets: [preset], darkMode: ["class"], content: ["./src/**/*.{ts,tsx}", "./theme/**/*.{ts,tsx}"] };
+export default { presets: [preset], darkMode: ["class"], content: ["./src/**/*.{ts,tsx}", "./theme/components/**/*.tsx"] };
 ```
 
 ```css
