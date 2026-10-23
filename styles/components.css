@@ -1,0 +1,44 @@
+@layer components {
+  .link-accent {
+    @apply text-primary hover:text-[hsl(var(--link-hover))] transition-colors duration-200;
+  }
+
+  .section-divider {
+    @apply flex items-center gap-4 text-xs uppercase tracking-widest text-muted-foreground;
+  }
+
+  .section-divider::after {
+    content: '';
+    @apply flex-1 border-t border-dashed border-[hsl(var(--section-line))];
+  }
+
+  .blog-title {
+    @apply text-xl md:text-2xl font-semibold leading-tight text-foreground hover:text-primary transition-colors duration-200;
+  }
+
+  .blog-meta {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .blog-meta-date {
+    @apply text-primary font-medium;
+  }
+
+  .blog-excerpt {
+    @apply text-muted-foreground leading-relaxed;
+  }
+
+  .nav-link {
+    @apply text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+
+  .section-heading {
+    @apply font-mono font-normal text-xs text-primary mb-8 uppercase tracking-widest;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

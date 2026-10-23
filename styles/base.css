@@ -1,0 +1,22 @@
+@layer base {
+  * {
+    @apply border-border transition-colors duration-300;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-primary-foreground;
+  }
+}
