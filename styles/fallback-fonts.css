@@ -1,5 +1,5 @@
 /*
- * Metric-matched fallbacks: local fonts scaled to Space Grotesk / JetBrains Mono, so
+ * Metric-matched fallbacks: local fonts scaled to Lato / IBM Plex Mono, so
  * text doesn't shift when the web fonts swap in. Measured against Arial and Courier
  * New (Liberation Sans/Mono are metric-compatible); Helvetica/Menlo are close enough.
  *
@@ -7,19 +7,30 @@
  * critical-CSS step drops @font-face rules without a url() source.
  */
 @font-face {
-  font-family: 'Space Grotesk Fallback';
+  font-family: 'Lato Fallback';
+  font-weight: 400;
   src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
-  size-adjust: 108.25%;
-  ascent-override: 90.9%;
-  descent-override: 26.97%;
+  size-adjust: 97.67%;
+  ascent-override: 101.06%;
+  descent-override: 21.81%;
   line-gap-override: 0%;
 }
 
 @font-face {
-  font-family: 'JetBrains Mono Fallback';
+  font-family: 'Lato Fallback';
+  font-weight: 700;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
+  size-adjust: 93.04%;
+  ascent-override: 106.08%;
+  descent-override: 22.89%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono Fallback';
   src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('Menlo');
   size-adjust: 100%;
-  ascent-override: 102.02%;
-  descent-override: 30%;
+  ascent-override: 102.52%;
+  descent-override: 27.5%;
   line-gap-override: 0%;
 }

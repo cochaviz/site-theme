@@ -9,11 +9,11 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
+    font-family: 'Lato', 'Lato Fallback', sans-serif;
   }
 
   code, .font-mono {
-    font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
+    font-family: 'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace;
   }
 
   ::selection {

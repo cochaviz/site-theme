@@ -31,8 +31,8 @@
     --radius: 0px;
 
     /* Custom tokens */
-    --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
-    --font-sans: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace;
+    --font-sans: 'Lato', 'Lato Fallback', sans-serif;
 
     --text-dim: 260 10% 45%;
     --text-bright: 260 20% 15%;
