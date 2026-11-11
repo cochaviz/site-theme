@@ -57,43 +57,44 @@ interface TypedTitleProps {
 
 const MONO = "font-mono font-medium tracking-normal";
 
-/** Kept on the same line as the text before it by the word joiner. */
+/**
+ * Out of the text flow, so it doesn't change the layout or allow a line break where it
+ * sits (an inline-block does, mid-word too); with no offsets it is drawn at its place in
+ * the text, from the top of the line.
+ */
 const Cursor = () => (
-  <>
-    {"\u2060"}
-    <span className="inline-block w-[0.45em] h-[0.9em] bg-primary/50 ml-0.5 translate-y-[0.1em] animate-[pulse_1.5s_steps(1)_infinite]" />
-  </>
+  <span className="absolute ml-0.5 w-[0.45em] h-[0.9em] translate-y-[0.1em] bg-primary/50 animate-[pulse_1.5s_steps(1)_infinite]" />
 );
 
 /**
  * Hero heading that periodically retypes itself between `from` (the site name, set in
  * mono) and `to` (set in sans), with a blinking cursor.
  *
- * A "\n" in either string is a forced line break, typed like any other character, so a
- * word that would otherwise wrap halfway through typing can start on its own line.
- *
- * Either string may wrap over several lines: invisible copies of both, fully typed, share
- * one grid cell with the typed text, so the heading is always as tall as the taller of
- * the two and the content below it doesn't move while retyping. (A prefix never wraps
- * onto more lines than the whole string.)
+ * Nothing moves while it retypes, at any width: the untyped rest of the current string is
+ * laid out too, invisibly, so each line breaks where it will once fully typed (a word
+ * starts on the line it ends up on), and invisible copies of both strings share its grid
+ * cell, so the heading is always as tall as the taller one. A "\n" in either string is a
+ * forced line break.
  */
 export function TypedTitle({ from, to }: TypedTitleProps) {
   const { text, showingA } = useTypeTransition(from, to);
+  const full = showingA ? from : to;
   const cell = "col-start-1 row-start-1";
 
   return (
     <h1 className="grid whitespace-pre-line text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6">
       <span aria-hidden className={`${cell} invisible ${MONO}`}>
         {from}
-        <Cursor />
       </span>
       <span aria-hidden className={`${cell} invisible`}>
         {to}
-        <Cursor />
       </span>
       <span className={`${cell} ${showingA ? MONO : ""}`}>
         {text}
         <Cursor />
+        <span aria-hidden className="invisible">
+          {full.slice(text.length)}
+        </span>
       </span>
     </h1>
   );
